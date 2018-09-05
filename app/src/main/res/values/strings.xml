@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppAnotacoes</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="txtTitulo">Title:</string>
+    <string name="txtA">Title:</string>
+
+
+</resources>
