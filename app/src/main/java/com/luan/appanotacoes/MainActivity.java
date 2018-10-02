@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.luan.appanotacoes.dao.AnotacaoDAO;
+import com.luan.appanotacoes.model.Anotacao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                salvarProduto();
+                salvarAnotacao();
             }
         });
 
@@ -60,9 +64,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void salvarProduto(){
+    private void salvarAnotacao(){
         String anotacao = etAnotacao.getText().toString();
         String titulo = etTitulo.getText().toString();
+
+        if ( titulo.isEmpty() ) {
+            AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+            alerta.setTitle(getResources().getString(R.string.txtAtencao));
+            alerta.setIcon(android.R.drawable.ic_dialog_alert);
+            alerta.setMessage(R.string.txtCamposObrigatorios);
+            alerta.setNeutralButton("OK", null);
+            alerta.show();
+
+        }else {
+            Anotacao prod = new Anotacao();
+            prod.setTitulo(titulo);
+            prod.setAnotacao(anotacao);
+            AnotacaoDAO.inserir(this, prod);
+            finish();
+
+        }
 
 
 

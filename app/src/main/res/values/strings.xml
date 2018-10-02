@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="txtTitulo">Title:</string>
-    <string name="txtA">Title:</string>
-
+    <string name="txtAtencao">Title:</string>
+    <string name="txtCamposObrigatorios">Title</string>
 
 </resources>
